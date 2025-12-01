@@ -83,8 +83,8 @@ function build() {
     wine $SOURCE/ml64.exe -c -Zi -Fl -nologo "$(winepath -w ${OPTION_FILENAME}.asm)"
     if [ $? -eq 0 ]; then
         echo Ассемблирование успешно
-        echo wine $SOURCE/link.exe /DEBUG /MAP /SUBSYSTEM:CONSOLE ${OPTION_LIBS} $(winepath -w ${OPTION_FILENAME}).obj
-        wine $SOURCE/link.exe /DEBUG /MAP /SUBSYSTEM:CONSOLE ${OPTION_LIBS} $(winepath -w ${OPTION_FILENAME}).obj
+        echo wine $SOURCE/link.exe /DEBUG /MAP /SUBSYSTEM:CONSOLE /ENTRY:Start  ${OPTION_LIBS} $(winepath -w ${OPTION_FILENAME}).obj
+        wine $SOURCE/link.exe /DEBUG /MAP /SUBSYSTEM:CONSOLE /ENTRY:Start ${OPTION_LIBS} $(winepath -w ${OPTION_FILENAME}).obj
         if [ $? -eq 0 ]; then
             echo Компоновка завершена
             if $OPTION_CUSTOM_OUTPUT_FILENAME; then
